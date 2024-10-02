@@ -139,3 +139,15 @@ pca_var_explained[2] * 100
 # 30.21551
 
 
+
+#------- loadings
+pca_loadings <- as.data.frame(pca_result$rotation[, 1:2])
+pca_loadings$Variable <- rownames(pca_loadings)
+pca_loadings <- pca_loadings[, c("Variable", "PC1", "PC2")]
+pca_loadings
+
+write.csv(pca_loadings, "/Users/katherine/Documents/Projects/SOSP_AmNat/output_tables/Climate_PCA_loadings.csv", row.names = FALSE)
+
+
+
+

@@ -13,7 +13,7 @@ str(dat)
 
 
 ##### 2. test genomic offset effects on population trend ####
-# genomic offset with a 2-year lag influences population growth rate, while controlling for population density.
+# genomic offset with a 2-year lag influences population growth rate
 dat_sub <- dat
 dat_sub$GenomicOffset_lag2 <- dplyr::lag(dat$GenomicOffset, n = 2)
 dat_sub$GenomicOffset_lag1 <- dplyr::lag(dat$GenomicOffset, n = 1)
@@ -23,7 +23,7 @@ dat_sub_lambda <- dat_sub %>%
 
 dat_sub_lambda <- na.omit(dat_sub_lambda)
 
-#hypothesis: Genomic offset two years prior (GenomicOffset_lag2) has a significant effect on population growth rate (λ).
+#hypothesis: Genomic offset two years prior (GenomicOffset_lag2) has a significant effect on population growth rate
 gls_lambda <- gls(Lambda ~ GenomicOffset_lag2 ,
                   data = dat_sub_lambda,
                   correlation = corAR1(form = ~ Year2))
@@ -63,11 +63,11 @@ dat_sub$GenomicOFfset_lag2 <- dplyr::lag(dat$GenomicOffset, n = 2)
 dat_sub$GenomicOFfset_lag1 <- dplyr::lag(dat$GenomicOffset, n = 1)
 
 dat_sub_juv <- dat_sub %>%
-  dplyr::select(Year2, GenomicOffset, GenomicOFfset_lag2, Juv_surv_fledglings)
+  dplyr::select(Year2, GenomicOffset, GenomicOffset_lag2, Juv_surv_fledglings)
 
 dat_sub_juv <- na.omit(dat_sub_juv)
 
-gls_juv <- gls(Juv_surv_fledglings ~ GenomicOFfset_lag2  , 
+gls_juv <- gls(Juv_surv_fledglings ~ GenomicOffset_lag2  , 
                data = dat_sub_juv,
                correlation = corAR1(form = ~ Year2)) 
 summary(gls_juv)
@@ -80,7 +80,7 @@ acf(residuals_gls)
 
 
 ##### 5. test genomic offset effects on adult survival ####
-# genomic offset's influence on survival is moderated by the number of females in the population, and this interaction is important in determining the outcome.
+
 dat_sub <- dat
 dat_sub$GenomicOffset_lag3 <- dplyr::lag(dat$GenomicOffset, n = 3)
 dat_sub$GenomicOffset_lag2 <- dplyr::lag(dat$GenomicOffset, n = 2)
