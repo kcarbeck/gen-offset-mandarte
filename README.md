@@ -12,9 +12,9 @@ KC, PA, and JW conceived and designed the study. JW conducted the laboratory wor
 
 1. For whole genome processing and bioinformatic pipelines [click here](https://github.com/kcarbeck/SOSP-WGS/tree/main/bioinformatics-pipeline)
 
-2. Create climate raster stacks using ClimateNA and output text file for gradient forest ([01.createClimateRasters.R](01.createClimateRasters.R)). Then, create envfile for gradient forest ([02.populationLevelEnvData.py](02.populationLevelEnvData.py))
+2. Create climate raster stacks using ClimateNA and output text file for gradient forest ([01.createClimateRasters.R](01.createClimateRasters.R)). Then, create 'envfile' in the correct format for gradient forest ([02.populationLevelEnvData.py](02.populationLevelEnvData.py)). The envfile includes lat/long and climate data for each population.
 
-3. Train gradient forest model using [helper script](03.GF_TrainingHelperScript.py) and [training script](03.gradient_training.R). For selection of SNPs [click here](https://github.com/kcarbeck/SOSP-WGS/tree/main/WZA).
+3. Train gradient forest model using [helper script](03.GF_TrainingHelperScript.py) and [training script](03.gradient_training.R). The input files for training GF includes the envfile and 'snpfile'. The snpfile contains allele frequencies for putatively adaptive SNPs for each population, where SNPs are columns and populations are rows. For selection of SNPs [click here](https://github.com/kcarbeck/SOSP-WGS/tree/main/WZA).
 
 4. Predict GF model for each year using [helper script](04.GF_PredictionHelperScript.py) and [prediction script](04.gradient_prediction_script.R).
    
@@ -25,5 +25,7 @@ KC, PA, and JW conceived and designed the study. JW conducted the laboratory wor
 #### Analyses
 
 1. Performed a PCA on climate variables used in GF for Mandarte and visualized variation over time and in a bioplot. Script: [07.0.climatePCA.R](07.0.climatePCA.R)
+   
 2. Visualized annual variation in demmographic variables, genomic offset, and climate using [07.plotOffsetDemographyRelationships.R](07.plotOffsetDemographyRelationships.R).
+   
 3. Evaluated the impact of genomic offset on demography using cross-correlation function (CCF) analyses and generalized least squares (GLS) models and visualized results. Scripts: [08.timeSeriesScatterPlots.R](08.timeSeriesScatterPlots.R) and [09.GLSmodel.R](09.GLSmodel.R)
